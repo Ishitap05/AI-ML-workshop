@@ -1,0 +1,29 @@
+from keras.datasets import imdb
+import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense
+from sklearn.metrics import accuracy_score
+
+def vectorize(sequences, dimension = 10000):
+    results = np.zeros((len(sequences), dimension))
+    for i in range(len(sequences)):
+        results[i, sequences[i]] = 1
+    return results
+
+(Xtrain, ytrain), (Xtest, ytest) = imdb.load_data(num_words=10000)
+Xtrain = vectorize(Xtrain)
+
+
+
+
+
+
+
+
+
+Xtest = vectorize(Xtest)
+ypred = model.predict(Xtest)
+ypred = np.round(ypred)
+score = accuracy_score(ypred,ytest)
+print('Accuracy score is',100*score,'%')
+
